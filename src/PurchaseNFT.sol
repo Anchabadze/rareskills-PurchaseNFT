@@ -7,6 +7,11 @@ import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
+/**
+ * @title Purchase NFT with ERC20 tokens
+ * @notice Rareskills beginner solidity projects list
+ * @author Zurab Anchabadze (https://x.com/anchabadze)
+ */
 contract PurchaseNFT is ERC721("myNFT", "myNFT"), Ownable(msg.sender) {
     using SafeERC20 for IERC20;
 
