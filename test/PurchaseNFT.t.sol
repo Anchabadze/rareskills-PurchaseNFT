@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 
 import {Test} from "@forge-std/src/Test.sol";
 import {console} from "@forge-std/src/console.sol";
-import {PurchaseNFT} from "../src/PurcahseNFT.sol";
+import {PurchaseNFT} from "../src/PurchaseNFT.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract MockERC20 is ERC20 {

@@ -26,7 +26,7 @@ contract PurchaseNFT is ERC721("myNFT", "myNFT"), Ownable(msg.sender) {
     }
 
     function mint() external {
-        require(curSupply < maxSupply, "max supply reached");
+        require(curSupply <= maxSupply, "max supply reached");
         require(paymentToken.balanceOf(msg.sender) >= mintPrice, "not enough tokens");
         paymentToken.safeTransferFrom(msg.sender, address(this), mintPrice);
         _safeMint(msg.sender, curSupply);
