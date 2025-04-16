@@ -15,6 +15,9 @@ import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol
 contract PurchaseNFT is ERC721("myNFT", "myNFT"), Ownable(msg.sender) {
     using SafeERC20 for IERC20;
 
+    error MaxSupplyReached();
+    error NotEnoughTokens();
+
     IERC20 public paymentToken;
     uint256 public mintPrice;
     uint256 public curSupply = 1;
@@ -26,8 +29,8 @@ contract PurchaseNFT is ERC721("myNFT", "myNFT"), Ownable(msg.sender) {
     }
 
     function mint() external {
-        require(curSupply <= maxSupply, "max supply reached");
-        require(paymentToken.balanceOf(msg.sender) >= mintPrice, "not enough tokens");
+        if (curSupply >= maxSupply) revert MaxSupplyReached();
+        if (paymentToken.balanceOf(msg.sender) < mintPrice) revert NotEnoughTokens();
         paymentToken.safeTransferFrom(msg.sender, address(this), mintPrice);
         _safeMint(msg.sender, curSupply);
         curSupply += 1;
